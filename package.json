@@ -1,0 +1,11 @@
+{
+  "name": "p99-eqtimers",
+  "version": "0.0.1",
+  "description": "A standalone application that reads the EQ log file to create spell timers.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "joshua.lindberg",
+  "license": "ISC"
+}
