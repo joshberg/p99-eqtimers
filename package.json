@@ -4,8 +4,12 @@
   "description": "A standalone application that reads the EQ log file to create spell timers.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/electron main.js"
   },
   "author": "joshua.lindberg",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.6.2"
+  }
 }
