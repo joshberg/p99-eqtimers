@@ -1,19 +1,158 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-  </head>
-  <body>
-    <h1 style="color:red;">Something else Yep</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-  </body>
 
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
+<head>
+  <meta charset="UTF-8">
+  <title>p99 EQ Timers</title>
+  <style media="screen">
+    * {
+      cursor: default;
+    }
+
+    body {
+      height: 100%;
+      -webkit-user-select: none;
+      user-select: none;
+      -webkit-app-region: drag;
+    }
+  </style>
+  <link rel="stylesheet" href="./pure.css" />
+</head>
+
+<body>
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <h3 class="centered">Configuration</h3>
+    </div>
+    <div class="pure-u-1-2">
+      <div class="centered">
+        <button class="pure-button" style="margin-top:1em;" id="btn_launch_timer_window" onclick="LaunchTimers()">Launch Timers</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="pure-g">
+    <div class="pure-u-1-2">
+      <form class="pure-form pure-form-horizontal bordered m1">
+        <h4 class="centered m01">Environment</h4>
+        <div class="pure-form-group m05">
+          <label for="character_name">Character Name:</label>
+          <input id="character_name" type="text" />
+        </div>
+        <div class="pure-form-group m05">
+          <label for="character_class">Class:</label>
+          <select id="character_class">
+            <option value="cleric">Cleric</option>
+            <option value="druid">Druid</option>
+            <option value="shaman">Shaman</option>
+            <option value="enchanter">Enchanter</option>
+            <option value="magician">Magician</option>
+            <option value="necromancer">Necromancer</option>
+            <option value="wizard">Wizard</option>
+            <option value="bard">Bard</option>
+            <option value="paladin">Paladin</option>
+            <option value="ranger">Ranger</option>
+            <option value="shadowknight">ShadowKnight</option>
+            <option value="monk">Monk</option>
+            <option value="rogue">Rogue</option>
+            <option value="warrior">Warrior</option>
+          </select>
+        </div>
+        <div class="pure-form-group m05">
+          <label for="log_path">Log Path:</label>
+          <input id="log_path" type="text" />
+        </div>
+      </form>
+    </div>
+    <div class="pure-u-1-2">
+      <form class="pure-form pure-form-horizontal bordered m1">
+        <h4 class="centered m01">Styling</h4>
+        <div class="pure-g">
+          <div class="pure-u-1-2">
+            <label for="spells_good_fill">Good Fill Color:</label>
+            <input id="spells_good_fill" type="color" />
+          </div>
+          <div class="pure-u-1-2">
+            <label for="spells_bad_fill">Bad Fill Color:</label>
+            <input id="spells_bad_fill" type="color" />
+          </div>
+          <div class="pure-u-1-2">
+            <label for="spells_good_bg">Good BG Color:</label>
+            <input id="spells_good_bg" type="color" />
+          </div>
+          <div class="pure-u-1-2">
+            <label for="spells_bad_bg">Bad BG Color:</label>
+            <input id="spells_bad_bg" type="color" />
+          </div>
+          <div class="pure-u-1-2">
+            <label for="spells_good_text_color">Good Text Color:</label>
+            <input id="spells_good_text_color" type="color" />
+          </div>
+          <div class="pure-u-1-2">
+            <label for="spells_bad_text_color">Bad Text Color:</label>
+            <input id="spells_bad_text_color" type="color" />
+          </div>
+
+          <div class="pure-u-1-2">
+            <label for="display_columns">Columns:</label>
+            <select id="display_columns">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="pure-u-1-2">
+            <label for="display_alpha"> Global Alpha:</label><span id="display_alpha_value">100</span>%
+            <input id="display_alpha" type="range" min="0" max="255" />            
+          </div>
+          <div class="pure-u-1-2">
+            <div>Good:</div>
+            <div class="meter" id="example_good">
+                <img src="./img/spellgem2.png"/>
+              <span class="txt">Spell Name:Target</span>
+              <span class="fill" style="width:25%"></span>
+            </div>
+          </div>
+          <div class="pure-u-1-2">
+            <div>Bad:</div>
+            <div class="meter" id="example_bad">
+                <img src="./img/spellgem1.png" />
+              <span class="txt">Spell Name:Target</span>
+              <span class="fill" style="width:50%"></span>
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+  <div class="pure-u-1">
+    <div class="centered m2x">
+      <button class="pure-button m05" type="button" onclick="SaveConfig();">Save</button>
+      <button class="pure-button m05" id="button_load" type="button" onclick="LoadConfig()">Load</button>
+    </div>
+  </div>
+  </div>
+
+  <h3 class="centered">Spell List (changes with class)</h3>
+
+
+</body>
+
+<!-- Insert this line above script imports  -->
+<script>
+  if (typeof module === 'object') {
+    window.module = module;
+    module = undefined;
+  }
+</script>
+
+<!-- normal script imports etc  -->
+<script src="./scripts/jquery.min.js"></script>
+<script src="./scripts/configuration.js"></script>
+<script src="./scripts/monitor.js"></script>
+
+<!-- Insert this line after script imports -->
+<script>
+  if (window.module) module = window.module;
+</script>
+
 </html>

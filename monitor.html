@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Timers</title>
+    <style media="screen">
+        * {
+            cursor: default;
+        }
+
+        body {
+            height: 100%;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-app-region: drag;
+        }
+    </style>
+    <link rel="stylesheet" href="./pure.css" />
+</head>
+
+<body style="background:rgba(0,0,0,0)">
+    <div class="centered">+</div>
+    <div class="pure-g" id="timercontainer">
+    </div>
+</body>
+
+<!-- Insert this line above script imports  -->
+<script>
+    if (typeof module === 'object') {
+        window.module = module;
+        module = undefined;
+    }
+</script>
+
+<!-- normal script imports etc  -->
+<script src="./scripts/jquery.min.js"></script>
+
+<!-- Insert this line after script imports -->
+<script>
+    if (window.module) module = window.module;
+</script>
+
+</html>

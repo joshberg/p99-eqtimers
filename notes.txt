@@ -1,0 +1,4 @@
+First run should include a setup page where the character puts in their character name and class.
+They also need to select the location for the log file to be consumed.
+UI has to be transparent and always on top.
+Perhaps a two window system? Config window which launches monitor window?
